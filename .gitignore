@@ -1,0 +1,19 @@
+# Python
+build
+.python-version
+*.pyc
+*.egg-info
+.pytest_cache
+.coverage
+
+# Virtual env
+.venv
+
+# Inspect AI
+logs
+.env
+.compose.yaml
+
+# Project artifacts
+gage.toml
+secrets.json

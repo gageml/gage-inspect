@@ -1,0 +1,74 @@
+import json
+
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+
+from gage_inspect.task import run_task
+
+from task import add as add_task
+
+DEFAULT_MODEL = "openai/gpt-4.1-mini"
+
+
+class Input(BaseModel):
+    x: int
+    y: int
+
+
+app = FastAPI()
+
+
+@app.post("/add", response_model=int)
+def add(input: Input, req: Request):
+    """Add x and y.
+
+    Input is submitted as JSON-encoded body.
+
+    Returns the result as a JSON-encoded int.
+    """
+    resp = run_task(
+        add_task(),
+        input,
+        model=req.headers.get("x-model") or DEFAULT_MODEL,
+        target=req.headers.get("x-target"),
+        tags=["type:http"],
+    )
+    return JSONResponse(
+        content=int(resp.completion),
+        headers={
+            "x-model": resp.output.model,
+            **({"x-score": str(resp.score.value)} if resp.score else {}),
+        },
+    )
+
+
+@app.get("/add-alt")
+def add_alt(
+    x: int,
+    y: int,
+    model: str = DEFAULT_MODEL,
+    target: str | None = None,
+) -> tuple[int, str | None]:
+    """Add x and y.
+
+    Input is provided as query params.
+
+    Returns a JSON encoded list of two items: result and optional score.
+    Ouput is scored when `target` is provided, otherwise the value is
+    None.
+    """
+    resp = run_task(
+        add_task(),
+        json.dumps(dict(x=x, y=y)),
+        model=model,
+        target=target,
+    )
+    return (
+        int(resp.completion),
+        str(resp.score.value) if resp.score else None,
+    )
+
+
+if __name__ == "__main__":
+    print("Run using `fastapi run server.py`")
