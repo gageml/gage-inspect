@@ -14,7 +14,7 @@ def funny(judge: str | None = None):
             prompt_template("Say something funny about {prompt} in 5 words or less"),
             generate(),
         ],
-        scorer=[llm_judge(judge)],
+        scorer=llm_judge(judge),
     )
 
 

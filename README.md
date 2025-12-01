@@ -137,7 +137,7 @@ def funny():
             prompt_template("Say something funny about {prompt} in 5 words or less"),
             generate(),
         ],
-        scorer=[llm_judge()],
+        scorer=llm_judge(),
     )
 
 @dataset
