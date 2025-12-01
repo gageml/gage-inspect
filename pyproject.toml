@@ -1,6 +1,6 @@
 [project]
 name = "gage-inspect"
-version = "0.2.0.dev2"
+version = "0.2.0"
 description = "Gage support for Inspect AI"
 readme = "README.md"
 classifiers = [

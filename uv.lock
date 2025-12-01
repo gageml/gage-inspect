@@ -1330,7 +1330,7 @@ http = [
 
 [[package]]
 name = "gage-inspect"
-version = "0.2.0.dev2"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "docstring-parser" },
