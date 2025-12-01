@@ -17,7 +17,7 @@ Perform this task:
 """.strip()
 
 INPUTS_TEMPLATE = """
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 {}

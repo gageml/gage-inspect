@@ -21,7 +21,7 @@ Perform this task:
 Reverse the letters in a word.
 </task_description>
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 abc
@@ -48,7 +48,7 @@ Perform this task:
 Do a thing.
 </task_description>
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 abc
@@ -77,7 +77,7 @@ Perform this task:
 Reverse the letters in a word.
 </task_description>
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 <value description="the word to reverse">abc</value>
@@ -109,7 +109,7 @@ Perform this task:
 Reverse the letters in a word.
 </task_description>
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 <value description="the word to reverse">abc</value>
@@ -160,7 +160,7 @@ Perform this task:
 Subtract.
 </task_description>
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 <lhs description="Left hand side of subtract operation">two mice</lhs>
@@ -194,7 +194,7 @@ def test_custom_template():
         == """
 Do a thing.
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 abc
@@ -209,7 +209,7 @@ Return that.
         == """
 {x} and {y}
 
-Here are the inputs:
+Here are the task inputs:
 
 <inputs>
 abc
