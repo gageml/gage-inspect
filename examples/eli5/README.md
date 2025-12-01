@@ -13,6 +13,21 @@ Highlights:
 - [Install Gage][install]
 - API keys for any models used (e.g. `OPENAI_API_KEY`)
 
+## Setup
+
+Create and activate Python virtual environment.
+
+```
+uv venv
+source .venv/bin/activate
+```
+
+Install the optional examples dependencies.
+
+```shell
+uv pip install .[examples]
+```
+
 Check the status of your Gage environment.
 
 ```shell
