@@ -8,15 +8,22 @@ for evaluations.
 Inspect AI is open source software used by the AI safety community, AI
 labs, and the general community for defining and running evaluations.
 
-Gage Inspect is similarly available as open source software under the
-[MIT] license.
-
 Gage Inspect works with [Gage CLI][cli], a set of command line tools
 that enable programmer workflows for building and improving Inspect AI
 tasks.
 
+Gage Inspect is available as open source software under the [MIT]
+license.
+
 Visit [Gage documentation][docs] for a more complete guide to using
 Gage.
+
+## Motivation
+
+Gage integrates with Inspect AI to enable eval drive development.
+Evaluation support is built into your code from day one. Measure in
+development and test to improve your application and establish
+baselines. Measure in production to catch regressions and outliers.
 
 ## Quick start
 
@@ -26,25 +33,24 @@ To use this library, install it using `pip`.
 pip install gage-inspect
 ```
 
-Here's a simple Inspect task that is run with Gage.
+Here's a simple Inspect task that can be run from the command line.
 
 ```python
+from inspect_ai import Task, task
+from inspect_ai.solver import generate, prompt_template
 from gage_inspect.task import run_task
-from inspect_ai import task, Task
-from inspect_ai.solver import prompt_template, generate
 
 @task
 def funny():
-    return Task(solver=[
-        prompt_template(
-            "Say something funny about {prompt} in 5 words or less."
-        ),
-        generate()
-    ])
+    return Task(
+        solver=[
+            prompt_template("Say something funny about {prompt} in 5 words or less"),
+            generate(),
+        ]
+    )
 
 if __name__ == "__main__":
     import sys
-
     resp = run_task(
         funny(),
         input=sys.argv[1],
@@ -56,17 +62,16 @@ if __name__ == "__main__":
 To run this task from the command line, save the code to a file named
 `funny.py`.
 
-To run this task on OpenAI, you need the `openai` Python package.
+For OpenAI models, install the `openai` Python package.
 
 ```shell
 pip install openai
 ```
 
-Specify the API key required by the provider. For example, define your
-API key for OpenAI using `OPENAI_API_KEY`.
+Specify your API key for OpenAI using `OPENAI_API_KEY`.
 
 ```shell
-export OPENAI_API_KEY=####
+export OPENAI_API_KEY='*****'
 ```
 
 Run the task from the command line.
@@ -75,9 +80,11 @@ Run the task from the command line.
 python funny.py cats openai/gpt-4.1
 ```
 
-## Task endpoint
+### Task endpoint
 
-Use [FastAPI] to create an endpoint for the task.
+Use [FastAPI] to create an HTTP endpoint for the task.
+
+Save this code to a file named `serve.py`:
 
 ```python
 from fastapi import FastAPI
@@ -87,12 +94,10 @@ from funny import funny
 app = FastAPI()
 
 @app.get("/funny/{topic}")
-def get(topic, model="openai/gpt-4.1"):
+def get_funny(topic, model="openai/gpt-4.1"):
     resp = run_task(funny(), topic, model=model)
     return resp.completion
 ```
-
-Save this code to a file named `serve.py`.
 
 This code requires the `fastapi[standard]` package.
 
@@ -103,7 +108,7 @@ pip install fastapi[standard]
 Start an endpoint using the `fastapi` command.
 
 ```shell
-fastapi serve.py
+fastapi run serve.py
 ```
 
 Call the task using curl:
@@ -115,9 +120,79 @@ curl localhost:8000/funny/cats
 For a more detailed example of serving a task, see
 [`examples/add`][add-example].
 
+### Evaluate the task
+
+Modify `funny.py` to add a scorer with sample.
+
+```python
+from inspect_ai import Task, task
+from inspect_ai.solver import generate, prompt_template
+from gage_inspect.dataset import dataset
+from gage_inspect.scorer import llm_judge
+
+@task
+def funny():
+    return Task(
+        solver=[
+            prompt_template("Say something funny about {prompt} in 5 words or less"),
+            generate(),
+        ],
+        scorer=[llm_judge()],
+    )
+
+@dataset
+def samples():
+    return ["birds", "cows", "cats", "corn", "barns"]
+```
+
+Evaluate this task using Inspect AI.
+
+```shell
+INSPECT_EVAL_MODEL=openai/gpt-4.1 inspect eval funny.py
+```
+
+Alternative, use the Gage CLI.
+
+Install `gage-cli`.
+
+```shell
+pip install gage-cli
+```
+
+Use `gage eval` to run the task. Gage asks for input and calls Inspect
+AI to run the eval.
+
+```shell
+gage eval funny
+```
+
+Use either Inspect AI View to examine the eval logs.
+
+Inspect View is a web app that runs locally.
+
+```shell
+inspect view
+```
+
+Visit <http://127.0.0.1:7575> to view the Inspect logs.
+
+Alternatively, use Gage Review. Gage Review is a terminal based
+application that provides an alternative interface to Inspect logs.
+
+```shell
+gage review
+```
+
+For more information on Gage CLI, see the [`gage-cli`][cli] project.
+
+- Use Inspect AI commands for advanced applications or where Gage's
+  simplified interfaces are insufficient.
+
+- Use Gage CLI for dialog based commands and terminal based log reviews.
+
 ## Contributing
 
-Please see our [contribution policy][contributing].
+See our [contribution policy][contributing].
 
 <!-- Links -->
 

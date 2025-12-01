@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 from gage_inspect.task import run_task
 
-from task import add as add_task
+from examples.add.add import add
 
 DEFAULT_MODEL = "openai/gpt-4.1-mini"
 
@@ -17,10 +17,11 @@ class Input(BaseModel):
 
 
 app = FastAPI()
+app.state.task = add()
 
 
 @app.post("/add", response_model=int)
-def add(input: Input, req: Request):
+def post_add(req: Request, input: Input):
     """Add x and y.
 
     Input is submitted as JSON-encoded body.
@@ -28,7 +29,7 @@ def add(input: Input, req: Request):
     Returns the result as a JSON-encoded int.
     """
     resp = run_task(
-        add_task(),
+        req.app.state.task,
         input,
         model=req.headers.get("x-model") or DEFAULT_MODEL,
         target=req.headers.get("x-target"),
@@ -44,7 +45,8 @@ def add(input: Input, req: Request):
 
 
 @app.get("/add-alt")
-def add_alt(
+def get_add(
+    req: Request,
     x: int,
     y: int,
     model: str = DEFAULT_MODEL,
@@ -59,7 +61,7 @@ def add_alt(
     None.
     """
     resp = run_task(
-        add_task(),
+        req.app.state.task,
         json.dumps(dict(x=x, y=y)),
         model=model,
         target=target,
