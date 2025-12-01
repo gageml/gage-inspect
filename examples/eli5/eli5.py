@@ -17,7 +17,7 @@ DEFAULT_JUDGE = "openai/gpt-4.1"
 
 
 @task
-def eli5(judge_model: str = DEFAULT_JUDGE) -> Task:
+def eli5(judge: str = DEFAULT_JUDGE) -> Task:
     """Explain something as if I'm five."""
 
     return Task(
@@ -25,12 +25,12 @@ def eli5(judge_model: str = DEFAULT_JUDGE) -> Task:
             input_template(TEMPLATE),
             generate(),
         ],
-        scorer=judge(judge_model),
+        scorer=paws_task(judge),
     )
 
 
 @scorer(metrics=[accuracy(), stderr()])
-def judge(model: str):
+def paws_task(model: str):
     """Score task result using paws task."""
 
     async def score(state: TaskState, target: Target) -> Score:
@@ -59,7 +59,7 @@ def judge(model: str):
 
 
 @dataset(name="eli5")
-def tests():
+def samples():
     """Test samples for eli5 task."""
 
-    return yaml_dataset("tests.yaml")
+    return yaml_dataset("samples.yaml")

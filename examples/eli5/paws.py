@@ -27,7 +27,7 @@ Sentence 2: {s2}
 
 @task
 def paws() -> Task:
-    """Inspect Task implementation of the PAWS benchmark.
+    """Inspect implementation of the PAWS benchmark.
 
     Task compares two sentences and returns 'Yes' if the second sentence
     is a paraphrase of the first or 'No' if it is not.
@@ -38,7 +38,6 @@ def paws() -> Task:
 
     Output:
       Yes if s2 is a paraphrase of s1 otherwise No
-
     """
     return Task(
         solver=[
@@ -51,7 +50,7 @@ def paws() -> Task:
 
 @dataset(name="paws")
 def hf_paws():
-    """PAWS dataset from Google Research."""
+    """PAWS dataset from Google Research hosted on Hugging Face."""
 
     return hf_dataset(
         path="google-research-datasets/paws",
