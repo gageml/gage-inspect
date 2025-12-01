@@ -92,8 +92,7 @@ as easy as possible for both you and us.
 Before spending time on a bug, take a moment to review this short
 checklist.
 
-- [ ] Is there an open issue that describes the bug? (see
-      [Request a feature](#request-a-feature))
+- [ ] Is there an open issue that describes the bug?
 - [ ] Is the issue classified as a bug or is there otherwise agreement
       with the project maintainers that the issue needs to be fixed now?
 
