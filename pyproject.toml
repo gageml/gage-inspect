@@ -3,6 +3,15 @@ name = "gage-inspect"
 version = "0.2.0.dev2"
 description = "Gage support for Inspect AI"
 readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Typing :: Typed",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+]
 requires-python = ">=3.10"
 dependencies = ["docstring-parser>=0.17.0", "inspect-ai>=0.3.123"]
 
