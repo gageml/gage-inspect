@@ -20,6 +20,6 @@ test-coverage:
 build:
     uv build
 
-# Build and publish
+# Publish a release
 publish version:
     uv publish dist/gage_inspect-{{version}}.tar.gz* dist/gage_inspect-{{version}}-*.whl
