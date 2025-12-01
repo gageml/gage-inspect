@@ -10,29 +10,8 @@ Highlights:
 
 ## Prerequisites
 
-- [Install Gage][install]
-- API keys for any models used (e.g. `OPENAI_API_KEY`)
-
-## Setup
-
-Create and activate Python virtual environment.
-
-```
-uv venv
-source .venv/bin/activate
-```
-
-Install the optional examples dependencies.
-
-```shell
-uv pip install .[examples]
-```
-
-Check the status of your Gage environment.
-
-```shell
-gage status
-```
+- [Setup Gage for examples][gage-init]
+- API keys for models used (e.g. `OPENAI_API_KEY`)
 
 ## Run the task
 
@@ -40,7 +19,7 @@ gage status
 gage run eli5
 ```
 
-Provide input that you want paraphrased in simpler terms.
+Provide input that you want simplified.
 
 ## Evaluate the task
 
@@ -96,7 +75,7 @@ gage eval paws -l 100 -m openai/gpt-4.1-nano -m openai/gpt-4.1 -m openai/gpt-5 -
 
 <!-- Links -->
 
-[install]: https://gage.io/start
+[gage-init]: https://gage.io/examples
 [paws.py]: ./paws.py
 [samples]: ./samples.yaml
 [paws-dataset]: https://github.com/google-research-datasets/paws
