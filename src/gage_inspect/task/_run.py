@@ -72,6 +72,9 @@ class TaskResponse:
         # Return an IC candidate if we have one
         return ic_candidate
 
+    @property
+    def error(self):
+        self.log.error
 
 
 def run_task(
