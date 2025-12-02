@@ -85,9 +85,10 @@ def run_task(
     target: str | None = None,
     log_dir: str | None = None,
     tags: list[str] | None = None,
+    score: bool | None = None,
 ) -> TaskResponse:
     return asyncio.run(
-        run_task_async(task, input, task_args, model, target, log_dir, tags)
+        run_task_async(task, input, task_args, model, target, log_dir, tags, score)
     )
 
 
@@ -99,6 +100,7 @@ async def run_task_async(
     target: str | None = None,
     log_dir: str | None = None,
     tags: list[str] | None = None,
+    score: bool | None = None,
 ) -> TaskResponse:
     # Disable Inspect display
     init_display_type("none")
@@ -153,7 +155,7 @@ async def run_task_async(
             logger=logger,
             eval_wd="",
             tags=tags,
-            score=target is not None,
+            score=score if score is not None else target is not None,
         )
     )
     return TaskResponse(log)
