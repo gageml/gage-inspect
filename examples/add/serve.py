@@ -39,7 +39,9 @@ def post_add(req: Request, input: Input):
         content=int(resp.completion),
         headers={
             "x-model": resp.output.model,
-            **({"x-score": str(resp.score.value)} if resp.score else {}),
+            **(
+                {"x-score": str(resp.default_score.value)} if resp.default_score else {}
+            ),
         },
     )
 
@@ -68,7 +70,7 @@ def get_add(
     )
     return (
         int(resp.completion),
-        str(resp.score.value) if resp.score else None,
+        str(resp.default_score.value) if resp.default_score else None,
     )
 
 

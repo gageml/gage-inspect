@@ -34,8 +34,44 @@ class TaskResponse:
         return self._sample.output.completion
 
     @property
-    def score(self):
-        return self._sample.score
+    def scores(self):
+        return self._sample.scores
+
+    @property
+    def default_score(self):
+        """Returns the default score for a result.
+
+        Responses can have multiple scores, which are available using
+        the `scores` attribute. Returns None if there are no scores.
+
+        If there is only one score, that score is always returned as the
+        default.
+
+        If there is more than one score, returns the score that uses a
+        Correct / Incorrect designation (i.e. the score `value` is
+        either "I" or "C"). If there is more than one such score type,
+        none of the scores is assumed to be default and so the return
+        value is None.
+        """
+        if not self._sample.scores:
+            return None
+        # If only one score, return it
+        scores = list(self._sample.scores.values())
+        if len(scores) == 1:
+            return scores[0]
+
+        # Find one and only one score with I/C value
+        ic_candidate = None
+        for score in scores:
+            if isinstance(score.value, str) and score.value in ("C", "I"):
+                if ic_candidate:
+                    # Our second I/C score, can't assume a default
+                    return None
+                ic_candidate = score
+
+        # Return an IC candidate if we have one
+        return ic_candidate
+
 
 
 def run_task(
