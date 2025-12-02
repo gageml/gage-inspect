@@ -52,7 +52,10 @@ def paws_task(model: str):
             )
         else:
             value = "I"
-            explanation = f"Judge said '{answer}' when asked if the response is an accurate paraphrase."
+            explanation = (
+                f"Judge said '{answer}' when asked if the response "
+                "is an accurate paraphrase."
+            )
         return Score(value=value, answer=answer, explanation=explanation)
 
     return score
