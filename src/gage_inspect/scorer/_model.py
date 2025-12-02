@@ -30,9 +30,7 @@ def llm_judge(model: str | Model | None = None):
         result = await model.generate(
             llm_judge_dialog(user_prompt, state.output.completion)
         )
-        [first, *rest] = result.completion.lstrip().split(" ")
-        value = "C" if "yes" in first.lower() else "I"
-        explanation = " ".join(rest)
+        value, explanation = parse_judge_answer(result.completion)
         return Score(value=value, explanation=explanation)
 
     return score
@@ -61,3 +59,12 @@ def llm_judge_dialog(user_prompt: str | list[Content], answer: str):
             )
         ),
     ]
+
+
+def parse_judge_answer(answer: str):
+    parts = answer.lstrip().split(maxsplit=1)
+    if not parts:
+        return "I", ""
+    first, explanation = [parts[0], ""] if len(parts) == 1 else parts
+    value = "C" if "yes" in first.lower() else "I"
+    return value, explanation.strip()
