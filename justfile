@@ -10,6 +10,7 @@ init:
 # Run tests
 test:
     uv run pytest
+    groktest .
 
 # Run tests with coverage
 test-coverage:

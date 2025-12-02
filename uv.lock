@@ -1340,6 +1340,7 @@ dependencies = [
 [package.optional-dependencies]
 dev = [
     { name = "coverage" },
+    { name = "groktest" },
     { name = "pytest" },
 ]
 examples = [
@@ -1366,6 +1367,7 @@ requires-dist = [
     { name = "docstring-parser", specifier = ">=0.17.0" },
     { name = "fastapi", extras = ["standard"], marker = "extra == 'examples'", specifier = ">=0.123.0" },
     { name = "githubpy", marker = "extra == 'examples'", specifier = ">=2.0.0" },
+    { name = "groktest", marker = "extra == 'dev'", specifier = ">=0.3" },
     { name = "inspect-ai", specifier = ">=0.3.123" },
     { name = "langchain", marker = "extra == 'examples'", specifier = ">=1.0.5" },
     { name = "langchain-ollama", marker = "extra == 'examples'", specifier = ">=1.0.0" },
@@ -1411,6 +1413,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e5/7b/adfd75544c415c487b33061fe7ae526165241c1ea133f9a9125a56b39fd8/googleapis_common_protos-1.72.0.tar.gz", hash = "sha256:e55a601c1b32b52d7a3e65f43563e2aa61bcd737998ee672ac9b951cd49319f5", size = 147433, upload-time = "2025-11-06T18:29:24.087Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c4/ab/09169d5a4612a5f92490806649ac8d41e3ec9129c636754575b3553f4ea4/googleapis_common_protos-1.72.0-py3-none-any.whl", hash = "sha256:4299c5a82d5ae1a9702ada957347726b167f9f8d1fc352477702a1e851ff4038", size = 297515, upload-time = "2025-11-06T18:29:13.14Z" },
+]
+
+[[package]]
+name = "groktest"
+version = "0.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1a/42/f95e571918732c8664fef29d2e4cad3512f663cc0240a175db62857f322c/groktest-0.3.tar.gz", hash = "sha256:14c5112c709eed398024e3e3cfbdd0fae092be4e29cb38e37fc0872a208ea28d", size = 47881, upload-time = "2025-03-02T16:05:57.878Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/40/28/03a256101d608b1347a19ca7b943a037af2ed8fbb9c10cc86dcaeecdb1fb/groktest-0.3-py3-none-any.whl", hash = "sha256:2606b0a31122fd6934505b740bb9a98d9c2b20903ab8b404911129942a5efecc", size = 48996, upload-time = "2025-03-02T16:05:55.693Z" },
 ]
 
 [[package]]
