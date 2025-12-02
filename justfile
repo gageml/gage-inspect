@@ -16,6 +16,10 @@ test-coverage:
     uv run coverage run --source src -m pytest
     uv run coverage report -m
 
+# Test examples
+test-examples:
+    groktest .
+
 # Build package
 build:
     uv build
