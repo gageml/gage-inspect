@@ -1,3 +1,7 @@
+---
+test-options: +skip=!GAGE_CLI
+---
+
 # `eli5` example
 
     >>> cd("examples", "eli5")
