@@ -1,3 +1,5 @@
+import os
+
 from inspect_ai import Task, task
 from inspect_ai.scorer import Score, Target, accuracy, scorer, stderr
 from inspect_ai.solver import TaskState, generate
@@ -39,7 +41,7 @@ def paws_task(model: str):
             s2=state.output.completion,
         )
         resp = await run_task_async(
-            "examples/eli5/paws.py@paws",
+            f"{resolve_task_dir()}paws.py@paws",
             input,
             model=model,
             tags=["type:score"],
@@ -63,3 +65,12 @@ def samples():
     """Test samples for eli5 task."""
 
     return yaml_dataset("samples.yaml")
+
+
+def resolve_task_dir() -> str:
+    cwd = os.getcwd()
+    if cwd.endswith("/examples/eli5"):
+        return ""
+    elif cwd.endswith("/examples"):
+        return "eli5/"
+    return "examples/eli5/"
