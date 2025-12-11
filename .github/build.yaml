@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push: {}
+  pull_request: {}
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  posix:
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Virtual env
+        run: python${{ matrix.python }} -m venv .venv
+
+      - name: Install deps
+        run: |
+          source .venv/bin/activate
+          pip install uv
+          uv pip install .[dev]
+
+      - name: Test (pytest)
+        run: |
+          source .venv/bin/activate
+          pytest
+
+      - name: Test (groktest)
+        run: |
+          source .venv/bin/activate
+          pip pip install .[examples]
+          groktest .
+
+      # - name: Wait for ssh connection
+      #   uses: owenthereal/action-upterm@v1
