@@ -131,7 +131,7 @@
     │
     └  Done
 
-    >>> run("gage eval paws -m mockllm/model -y --limit 10")  # +wildcard
+    >>> run("gage eval paws -m mockllm/model -y --limit 10", timeout=30)  # +wildcard
     ┌  Evaluate tasks
     │
     ◇  Tasks:
@@ -142,7 +142,7 @@
     │
     ◇  Additional options:
     │  Sample limit: 10
-    │
+    │...
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (10 samples): mockllm/model                                              │
     ╰──────────────────────────────────────────────────────────────────────────────╯
