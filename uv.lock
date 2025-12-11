@@ -1329,6 +1329,26 @@ http = [
 ]
 
 [[package]]
+name = "gage-cli"
+version = "0.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "gage-inspect" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/39/2b31c6f4e27af958a8ad44463d07ff0b9ac3c50eda7e6c47c914b3773bf3/gage_cli-0.2.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:18c72b4ced94aff87e03870c3886b36268380c35ace01f57e507cbe124040701", size = 2780362, upload-time = "2025-12-11T00:05:21.572Z" },
+    { url = "https://files.pythonhosted.org/packages/be/d1/4a0b9b9097f0a2caacd7b7a96e9b3c5e7dcaf2a8cd9344a324b09ba89916/gage_cli-0.2.1-cp310-cp310-manylinux_2_39_x86_64.whl", hash = "sha256:f2d8552cf101969d1d6a0403afa9ccbd1e30bf75d1e8f3430e8c3529a26cbf53", size = 3046937, upload-time = "2025-12-11T00:04:48.433Z" },
+    { url = "https://files.pythonhosted.org/packages/d3/ea/661257445649c3f3d7f93b7a83c921607fe2cd4df83539bbd45d6edc80aa/gage_cli-0.2.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:a08f0cbb4243c82373d8d0d81684e1f6fb9b2218ecd23052bc8d49c227a9c0a3", size = 2779997, upload-time = "2025-12-11T00:05:32.567Z" },
+    { url = "https://files.pythonhosted.org/packages/ea/b0/ce1038f2eb85e2a7720868f73b77c53935816ad11e41a6556dbeac6b3b07/gage_cli-0.2.1-cp311-cp311-manylinux_2_39_x86_64.whl", hash = "sha256:4c00ccc006b2d5308af9fceef12563365ada65e8515f61321571e34eee5cdd45", size = 3045423, upload-time = "2025-12-11T00:04:51.785Z" },
+    { url = "https://files.pythonhosted.org/packages/32/48/319678e840ad89c794cd08e5cf5055c7bfa8be362bd54cbc50df85e250e6/gage_cli-0.2.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:2a959e96c203a35c63a4f458cafd8d70e9fcf2db1cea37ff6ebe64e94290dc24", size = 2774634, upload-time = "2025-12-11T00:05:20.002Z" },
+    { url = "https://files.pythonhosted.org/packages/06/d9/9f105e1cf02fbb43d88137da013e9653e02f85cc8cff7770915114bff5c2/gage_cli-0.2.1-cp312-cp312-manylinux_2_39_x86_64.whl", hash = "sha256:5c8c8ca69d0042856e462aabf124ad3bfa76659a73ca73839096ee0699aefa7d", size = 3035145, upload-time = "2025-12-11T00:04:46.634Z" },
+    { url = "https://files.pythonhosted.org/packages/5c/a3/454f1615816528d35d19750d4336e7aabfb2d6a60c7502afd7db38bf880e/gage_cli-0.2.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:369197005e5414875abd14dd63a861184033cf5f5a911ff616e356c1838b7f3d", size = 2774188, upload-time = "2025-12-11T00:05:14.416Z" },
+    { url = "https://files.pythonhosted.org/packages/77/86/7bd19b7ea0bf243e0a55d1988cf363361b6a9484529bcd32bd3b1391b79a/gage_cli-0.2.1-cp313-cp313-manylinux_2_39_x86_64.whl", hash = "sha256:bfaa0a95dd43ba1d7117f26894bf19ec756fb45f49c65556864ee3def6657980", size = 3034552, upload-time = "2025-12-11T00:04:43.535Z" },
+    { url = "https://files.pythonhosted.org/packages/cd/90/527f7e5bcba8cf8f7051be58b200a887bc8b1082cfa4b3cc19c01865f807/gage_cli-0.2.1-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:803c39251ebd21a2c02e86181ed6059f73d0cf3913a236369b16a4ffed47a03a", size = 2772660, upload-time = "2025-12-11T00:05:32.505Z" },
+    { url = "https://files.pythonhosted.org/packages/50/c0/7ab3bc3e8cc38a8a6997401730862ecef727db3ac0f38f2335584361fe17/gage_cli-0.2.1-cp314-cp314-manylinux_2_39_x86_64.whl", hash = "sha256:be88273115fae8ef60152cdb3a43e369474e1aaf91827b11be09bb84266a79c0", size = 3035102, upload-time = "2025-12-11T00:05:01.334Z" },
+]
+
+[[package]]
 name = "gage-inspect"
 version = "0.2.0"
 source = { editable = "." }
@@ -1348,6 +1368,7 @@ examples = [
     { name = "chromadb" },
     { name = "datasets" },
     { name = "fastapi", extra = ["standard"] },
+    { name = "gage-cli" },
     { name = "githubpy" },
     { name = "langchain" },
     { name = "langchain-ollama" },
@@ -1366,6 +1387,7 @@ requires-dist = [
     { name = "datasets", marker = "extra == 'examples'", specifier = ">=4.4.1" },
     { name = "docstring-parser", specifier = ">=0.17.0" },
     { name = "fastapi", extras = ["standard"], marker = "extra == 'examples'", specifier = ">=0.123.0" },
+    { name = "gage-cli", marker = "extra == 'examples'", specifier = ">=0.2.1" },
     { name = "githubpy", marker = "extra == 'examples'", specifier = ">=2.0.0" },
     { name = "groktest", marker = "extra == 'dev'", specifier = ">=0.3" },
     { name = "inspect-ai", specifier = ">=0.3.123" },

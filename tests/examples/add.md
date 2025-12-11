@@ -1,7 +1,3 @@
----
-test-options: +skip=!GAGE_CLI
----
-
 # `add` example
 
     >>> cd("examples", "add")

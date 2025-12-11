@@ -22,6 +22,7 @@ examples = [
     "chromadb>=1.3.4",
     "datasets>=4.4.1",
     "fastapi[standard]>=0.123.0",
+    "gage-cli>=0.2.1",
     "githubpy>=2.0.0",
     "langchain>=1.0.5",
     "langchain-ollama>=1.0.0",
