@@ -1,6 +1,6 @@
 [project]
 name = "gage-inspect"
-version = "0.2.0"
+version = "0.2.1.dev1"
 description = "Gage support for Inspect AI"
 readme = "README.md"
 classifiers = [
@@ -17,11 +17,7 @@ dependencies = ["docstring-parser>=0.17.0", "inspect-ai>=0.3.123"]
 
 [project.optional-dependencies]
 dev = ["coverage>=7.12.0", "groktest>=0.3", "pytest>=8.4.1"]
-examples = [
-    "datasets>=4.4.1",
-    "fastapi[standard]>=0.123.0",
-    "gage-cli>=0.2.1",
-]
+examples = ["datasets>=4.4.1", "fastapi[standard]>=0.123.0", "gage-cli>=0.2.1"]
 
 [build-system]
 requires = ["uv_build>=0.9.10,<0.10.0"]
