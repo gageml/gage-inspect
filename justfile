@@ -23,7 +23,3 @@ test-examples:
 # Build package
 build:
     uv build
-
-# Publish a release
-publish version:
-    uv publish dist/gage_inspect-{{version}}.tar.gz* dist/gage_inspect-{{version}}-*.whl
