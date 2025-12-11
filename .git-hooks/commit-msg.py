@@ -35,6 +35,10 @@ def check(lines):
     if lines[1] != "":
         error("line 2 must be blank")
 
+    # Not uncommon to leave a single training black - is okay
+    if len(lines) == 2:
+        return
+
     if lines[2].strip() == "":
         error("line 3 cannot be blank")
 
@@ -87,6 +91,7 @@ def test():
     check(["A" * 50, "", "B" * 72])
     check(["Okay", "#"])
     check(["Okay", "# " + "A" * 72])
+    check(["Okay", ""])  # Single trailing empty line okay
 
 
 if __name__ == "__main__":
