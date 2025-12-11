@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Commit to use for the release
+        required: true
+
+jobs:
+  posix:
+    strategy:
+      matrix:
+        # Pure Python package - can build on a single system
+        python: ["3.10"]
+        os: [ubuntu-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Virtual env
+        run: python${{ matrix.python }} -m venv .venv
+
+      - name: Deps
+        run: |
+          source .venv/bin/activate
+          pip install uv
+
+      - name: Build
+        run: |
+          source .venv/bin/activate
+          uv build
+
+      - name: Upload files
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-py${{ matrix.python }}
+          path: dist/
+
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          source .venv/bin/activate
+          uv publish
