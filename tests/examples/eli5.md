@@ -80,7 +80,7 @@ release.
     accuracy   0.000
     stderr     0.000
     ⤶
-    Log:{}.eval
+    Log:{}eval
     ⤶
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (1 sample): mockllm/model                                                │
@@ -91,7 +91,7 @@ release.
     ⤶
     ⤶
     ⤶
-    Log:{}.eval
+    Log:{}eval
     ⤶
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (1 sample): mockllm/model                                                │
@@ -102,7 +102,7 @@ release.
     ⤶
     ⤶
     ⤶
-    Log:{}.eval
+    Log:{}eval
     ⤶
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (1 sample): mockllm/model                                                │
@@ -113,7 +113,7 @@ release.
     ⤶
     ⤶
     ⤶
-    Log:{}.eval
+    Log:{}eval
     ⤶
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (1 sample): mockllm/model                                                │
@@ -124,7 +124,7 @@ release.
     ⤶
     ⤶
     ⤶
-    Log:{}.eval
+    Log:{}eval
 
 ## `paws` task
 
@@ -183,4 +183,4 @@ accommodate database downtime time on new systems.
     accuracy  0.000
     stderr    0.000
     ⤶
-    Log:{}.eval
+    Log:{}eval

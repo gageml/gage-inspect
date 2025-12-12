@@ -66,4 +66,4 @@ Run an eval.
     accuracy  0.000
     stderr    0.000
     ⤶
-    Log:{}.eval
+    Log:{}eval

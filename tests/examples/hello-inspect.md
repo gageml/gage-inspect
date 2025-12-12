@@ -76,4 +76,4 @@ Run the eval with a limit of 10.
     accuracy           0.000
     stderr             0.000
     ⤶
-    Log:{}.eval
+    Log:{}eval
