@@ -171,6 +171,7 @@ accommodate database downtime time on new systems.
     ◇  Additional options:
     │  Sample limit: 10
     │
+    {}
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (10 samples): mockllm/model                                              │
     ╰──────────────────────────────────────────────────────────────────────────────╯
