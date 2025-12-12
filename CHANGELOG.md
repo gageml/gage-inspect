@@ -1,5 +1,11 @@
 # Changes
 
+## 0.2.2 (not released)
+
+Examples:
+
+- [`theory_of_mind`](examples/hello-inspect)
+
 ## 0.2.1 (2025-12-11)
 
 API changes:
@@ -14,7 +20,7 @@ Fixes:
 
 Examples:
 
-- [`eli5`](examples/eli5) - shows use of task as judge
+- [`eli5`](examples/eli5)
 
 ## 0.2.0 (2025-11-30)
 
