@@ -15,12 +15,10 @@ Return only the paraphrased text without additional comment.
 {input}
 """
 
-DEFAULT_JUDGE = "openai/gpt-4.1"
-
 
 @task
-def eli5(judge: str = DEFAULT_JUDGE) -> Task:
-    """Explain something as if I'm five."""
+def eli5(judge: str | None = None) -> Task:
+    """Explain it like I'm five."""
 
     return Task(
         solver=[
@@ -32,7 +30,7 @@ def eli5(judge: str = DEFAULT_JUDGE) -> Task:
 
 
 @scorer(metrics=[accuracy(), stderr()])
-def paws_task(model: str):
+def paws_task(model: str | None = None):
     """Score task result using paws task."""
 
     async def score(state: TaskState, target: Target) -> Score:
