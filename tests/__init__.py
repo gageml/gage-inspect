@@ -10,8 +10,8 @@ from typing import cast
 
 def run(
     cmd: str,
-    cwd: str | None = None,
     env: dict[str, str] | None = None,
+    cwd: str | None = None,
     capture: bool = False,
     delenv: list[str] | None = None,
     strip_ansi=True,

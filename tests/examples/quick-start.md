@@ -1,25 +1,38 @@
 # `add` example
 
+Run commands from the example dir.
+
     >>> cd("examples", "quick-start")
 
     >>> run("gage task list")
-    ╭───────┬──────────────────────┬──────────╮
-    │ Task  │ Description          │ Source   │
-    ├───────┼──────────────────────┼──────────┤
-    │ funny │ Quick start example. │ funny.py │
-    ╰───────┴──────────────────────┴──────────╯
+    ╭───────┬───────────────────────────┬──────────╮
+    │ Task  │ Description               │ Source   │
+    ├───────┼───────────────────────────┼──────────┤
+    │ funny │ Gage quick start example. │ funny.py │
+    ╰───────┴───────────────────────────┴──────────╯
 
-    >>> run("python funny.py cats mockllm/model")
+Init the command env.
+
+    >>> env = {
+    ...     "INSPECT_EVAL_MODEL": "mockllm/model",
+    ...     "INSPECT_LOG_DIR": make_temp_dir(),
+    ... }
+
+Run the task directly as a script.
+
+    >>> run("python funny.py cats mockllm/model", env)
     Default output from mockllm/model
 
-    >>> run("gage run funny -i cats -m mockllm/model -y")
+Run the task using `gage`.
+
+    >>> run("gage run funny -i cats -y", env)
     ┌  Run task
     │
     ◇  Task:
     │  funny
     │
     ├  Description:
-    │  Quick start example.
+    │  Gage quick start example.
     │
     ◇  Input:
     │  cats
@@ -36,7 +49,9 @@
     │
     └  Done
 
-    >>> run("gage eval funny -m mockllm/model -y")  # +wildcard
+Evaluate the task.
+
+    >>> run("gage eval funny -y", env)  # +parse
     ┌  Evaluate tasks
     │
     ◇  Tasks:
@@ -50,10 +65,10 @@
     ╰──────────────────────────────────────────────────────────────────────────────╯
     max_tasks: 4, tags: type:eval, dataset: samples
     ⤶
-    total time:                                   0:00:...
+    total time:                                   0:00:{}
     ⤶
     llm_judge
     accuracy   0.000
     stderr     0.000
     ⤶
-    Log: ...
+    Log:{}.eval

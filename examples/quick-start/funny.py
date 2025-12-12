@@ -8,7 +8,7 @@ from gage_inspect.task import run_task
 
 @task
 def funny(judge: str | None = None):
-    """Quick start example."""
+    """Gage quick start example."""
     return Task(
         solver=[
             prompt_template("Say something funny about {prompt} in 5 words or less"),
