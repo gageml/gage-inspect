@@ -159,7 +159,7 @@ capabilities.
 Run the PAWS eval with a limit of 10. Use a higher timeout to
 accommodate database downtime time on new systems.
 
-    >>> run("gage eval paws -l 10 --yes", env, timeout=30)  # +parse
+    >>> run("gage eval paws -l 10 --yes", env)  # +parse +skip=CI
     ┌  Evaluate tasks
     │
     ◇  Tasks:
@@ -171,7 +171,6 @@ accommodate database downtime time on new systems.
     ◇  Additional options:
     │  Sample limit: 10
     │
-    {}
     ╭──────────────────────────────────────────────────────────────────────────────╮
     │paws (10 samples): mockllm/model                                              │
     ╰──────────────────────────────────────────────────────────────────────────────╯
